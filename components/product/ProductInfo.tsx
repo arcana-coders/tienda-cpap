@@ -1,7 +1,8 @@
 'use client'
 
-import { useCartStore } from '@/lib/store'
 import { useState } from 'react'
+import { useCartStore } from '@/lib/store'
+import { cleanText } from '@/lib/strings'
 
 interface Producto {
   id: string
@@ -13,9 +14,6 @@ interface Producto {
   marca?: string | null
   bullets?: any
 }
-
-// Costo adicional de envío por pieza extra (mismo paquete)
-const ENVIO_PIEZA_EXTRA = 80
 
 export default function ProductInfo({ producto }: { producto: Producto }) {
   const { addItem, openCart } = useCartStore() as any
@@ -34,9 +32,7 @@ export default function ProductInfo({ producto }: { producto: Producto }) {
   const formatPrice = (n: number) =>
     n.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })
 
-  const precioTotal = cantidad === 1
-    ? precio
-    : precio * cantidad + (cantidad - 1) * ENVIO_PIEZA_EXTRA
+  const precioTotal = precio * cantidad
 
   const handleAgregar = () => {
     for (let i = 0; i < cantidad; i++) {
@@ -53,94 +49,162 @@ export default function ProductInfo({ producto }: { producto: Producto }) {
     setTimeout(() => setAgregado(false), 2000)
   }
 
+  // Mapeo de iconos para los bullets en base a palabras clave (heurística básica)
+  const getIconForBullet = (text: string) => {
+    const lText = text.toLowerCase()
+    if (lText.includes('presión') || lText.includes('pressure') || lText.includes('aire')) return 'air'
+    if (lText.includes('ruido') || lText.includes('silencioso') || lText.includes('quiet')) return 'volume_off'
+    if (lText.includes('mascarilla') || lText.includes('tubo') || lText.includes('mask')) return 'medical_mask'
+    if (lText.includes('agua') || lText.includes('humidificador')) return 'humidity_low'
+    if (lText.includes('batería') || lText.includes('energía') || lText.includes('voltaje')) return 'battery_charging_full'
+    if (lText.includes('peso') || lText.includes('ligero') || lText.includes('viaje')) return 'flight_takeoff'
+    if (lText.includes('garantía')) return 'verified_user'
+    return 'info'
+  }
+
   return (
-    <div className="flex flex-col gap-4">
-      {producto.marca && (
-        <span className="text-xs text-[#6B6B6B] uppercase tracking-widest font-medium">
-          {producto.marca}
-        </span>
-      )}
-
-      <h1 className="text-2xl font-bold text-[#1A1A1A] leading-snug">{producto.titulo}</h1>
-
-      {/* Precio */}
-      <div className="flex items-baseline gap-3">
-        <span className="text-3xl font-bold text-[#1A1A1A]">{formatPrice(precio)}</span>
-        {precioCompare && precioCompare > precio && (
-          <>
-            <span className="text-base text-[#6B6B6B] line-through">{formatPrice(precioCompare)}</span>
-            <span className="bg-red-100 text-red-600 text-xs font-bold px-2 py-0.5 rounded">
-              -{descuento}%
-            </span>
-          </>
+    <div className="flex flex-col gap-10">
+      
+      {/* Header Info */}
+      <div className="flex flex-col gap-4">
+        {producto.marca && (
+          <span className="text-xs text-on-surface-variant font-bold uppercase tracking-[0.2em] font-headline">
+            {producto.marca}
+          </span>
         )}
+        <h1 className="font-headline text-4xl lg:text-5xl font-extrabold tracking-tight text-on-surface leading-tight">
+          {cleanText(producto.titulo)}
+        </h1>
+        <p className="text-on-surface-variant font-medium tracking-tight">Ref: {producto.asin}</p>
       </div>
 
-      {/* Envío y facturación */}
-      <div className="space-y-2">
-        <div className="flex items-center gap-2 text-green-700 text-sm font-medium bg-green-50 border border-green-100 px-3 py-2 rounded-lg">
-          <span>🚚</span>
-          <span>Envío gratis a todo México</span>
-          <span className="text-green-600/70 font-normal">· No incluye zonas extendidas</span>
-        </div>
-        <div className="flex items-center gap-2 text-[#1A1A1A] text-sm bg-[#F5F5F5] border border-[#E0E0E0] px-3 py-2 rounded-lg">
-          <span>📄</span>
-          <span className="font-medium">Facturamos</span>
-          <span className="text-[#6B6B6B] font-normal">— Solicita tu factura al hacer el pedido</span>
-        </div>
-      </div>
-
-      {/* Selector de cantidad */}
-      <div className="flex items-center gap-4">
-        <span className="text-sm font-medium text-[#1A1A1A]">Cantidad:</span>
-        <div className="flex items-center border border-[#E0E0E0] rounded-full overflow-hidden">
-          <button
-            onClick={() => setCantidad(c => Math.max(1, c - 1))}
-            className="w-9 h-9 flex items-center justify-center text-lg hover:bg-[#F5F5F5] transition-colors"
-          >−</button>
-          <span className="w-8 text-center text-sm font-semibold">{cantidad}</span>
-          <button
-            onClick={() => setCantidad(c => c + 1)}
-            className="w-9 h-9 flex items-center justify-center text-lg hover:bg-[#F5F5F5] transition-colors"
-          >+</button>
-        </div>
-        {cantidad > 1 && (
-          <div className="text-sm text-[#6B6B6B]">
-            <span className="font-semibold text-[#1A1A1A]">{formatPrice(precioTotal)}</span>
-            <span className="ml-1">(+{formatPrice(ENVIO_PIEZA_EXTRA)} envío por pieza extra)</span>
+      {/* Buy Box */}
+      <div className="bg-surface-container-lowest p-6 md:p-8 rounded-[2rem] flex flex-col gap-6 shadow-[0_4px_40px_rgba(25,28,29,0.04)] border border-outline-variant/10">
+        
+        <div className="flex justify-between items-end">
+          <div>
+            <p className="text-sm text-on-surface-variant mb-1 font-medium font-body tracking-wide">Precio en MXN</p>
+            <div className="flex items-baseline gap-3">
+              <p className="font-headline text-4xl md:text-5xl font-bold text-on-surface tracking-tight">{formatPrice(precio)}</p>
+              {precioCompare && precioCompare > precio && (
+                <span className="text-lg text-outline line-through">{formatPrice(precioCompare)}</span>
+              )}
+            </div>
           </div>
-        )}
+          <div className="text-right flex flex-col items-end">
+            <p className="text-sm text-on-surface-variant font-body">Impuestos Incluidos</p>
+            {descuento > 0 && (
+              <span className="mt-1 bg-error/10 text-error text-xs font-bold px-2 py-1 rounded-md tracking-wider uppercase">
+                Ahorras {descuento}%
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Cantidad */}
+        <div className="flex items-center gap-4 py-2 border-y border-outline-variant/10">
+          <span className="text-sm font-bold text-on-surface font-body">Cantidad:</span>
+          <div className="flex items-center bg-surface-container-low rounded-xl p-1 border border-outline-variant/20">
+            <button
+              onClick={() => setCantidad(c => Math.max(1, c - 1))}
+              className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-xl font-medium transition-all text-on-surface-variant"
+            >−</button>
+            <span className="w-12 text-center text-sm font-bold text-on-surface font-headline">{cantidad}</span>
+            <button
+              onClick={() => setCantidad(c => c + 1)}
+              className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-xl font-medium transition-all text-on-surface-variant"
+            >+</button>
+          </div>
+        </div>
+
+        <button
+          onClick={handleAgregar}
+          className={`
+            w-full py-4 rounded-xl font-bold font-body text-lg flex items-center justify-center gap-3 transition-all duration-300
+            ${agregado 
+              ? 'bg-secondary text-on-secondary shadow-md scale-[0.99] cursor-default'
+              : 'bg-primary text-on-primary hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5'
+            }
+          `}
+        >
+          {agregado ? (
+            <><span className="material-symbols-outlined fill-current">check_circle</span><span>Agregado a tu Bolsa</span></>
+          ) : (
+            <><span className="material-symbols-outlined">shopping_bag</span><span>Comprar — {formatPrice(precioTotal)}</span></>
+          )}
+        </button>
+
+        <div className="flex flex-col gap-3">
+          <div className="flex items-start gap-4 bg-surface-container-low p-4 rounded-xl">
+            <span className="material-symbols-outlined text-primary mt-0.5">local_shipping</span>
+            <div>
+              <p className="font-bold text-on-surface text-sm font-body">Importación y Envío Nacional Gratis</p>
+              <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">Directo a tu domicilio en 7-9 días hábiles.</p>
+            </div>
+          </div>
+          
+          <div className="flex items-start gap-4 bg-surface-container-low p-4 rounded-xl">
+            <span className="material-symbols-outlined text-primary mt-0.5">receipt_long</span>
+            <div>
+              <p className="font-bold text-on-surface text-sm font-body">Facturación CFDI</p>
+              <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">Facturamos todos tus pedidos de forma electrónica según regulaciones del SAT.</p>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      {/* Bullets */}
+      {/* Specifications Bento (Mapeo de Bullets) */}
       {bullets.length > 0 && (
-        <ul className="space-y-2 mt-1">
-          {bullets.map((b: string, i: number) => (
-            <li key={i} className="flex gap-2 text-sm text-[#1A1A1A] leading-snug">
-              <span className="text-[#C4813A] mt-0.5 flex-shrink-0">✓</span>
-              <span>{b}</span>
-            </li>
-          ))}
-        </ul>
+        <>
+          <h2 className="text-xl font-bold text-on-surface font-headline border-b border-outline-variant/10 pb-2">Características Principales</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {bullets.slice(0, 4).map((b: string, i: number) => {
+              const text = cleanText(b);
+              // Intentar dividir en título y descripción si tiene un patrón común
+              let title = `Característica ${i + 1}`;
+              let desc = text;
+              
+              if (text.includes(':')) {
+                const parts = text.split(':');
+                title = parts[0].trim();
+                desc = parts.slice(1).join(':').trim();
+              } else if (text.includes('-')) {
+                const parts = text.split('-');
+                if(parts[0].length < 40) {
+                     title = parts[0].trim();
+                     desc = parts.slice(1).join('-').trim();
+                }
+              }
+
+              // Limitar un poco el texto si es muy largo
+              if(title.length > 50) title = title.substring(0, 50) + '...';
+
+              return (
+                <div key={i} className={`bg-surface-container-low p-5 md:p-6 rounded-2xl flex flex-col gap-2 border border-outline-variant/5 ${i === 2 && bullets.length === 3 ? 'md:col-span-2' : ''} ${i === 3 ? 'md:col-span-2' : ''}`}>
+                  <span className="material-symbols-outlined text-primary mb-1 text-[28px] opacity-80">{getIconForBullet(title)}</span>
+                  <p className="text-sm font-bold text-on-surface font-body">{title}</p>
+                  <p className="text-sm text-on-surface-variant leading-relaxed line-clamp-4">{desc}</p>
+                </div>
+              )
+            })}
+            
+            {/* Adicionales si hay mas de 4 bullets */}
+            {bullets.length > 4 && (
+              <div className="bg-surface-container-low p-5 md:p-6 rounded-2xl flex flex-col gap-2 border border-outline-variant/5 col-span-1 md:col-span-2">
+                 <span className="material-symbols-outlined text-primary mb-1 text-[28px] opacity-80">more_horiz</span>
+                 <p className="text-sm font-bold text-on-surface font-body">Especificaciones adicionales</p>
+                 <ul className="list-disc pl-4 mt-2 space-y-1">
+                    {bullets.slice(4, 7).map((b: string, j: number) => (
+                        <li key={j} className="text-sm text-on-surface-variant leading-relaxed">{cleanText(b)}</li>
+                    ))}
+                 </ul>
+              </div>
+            )}
+          </div>
+        </>
       )}
 
-      {/* CTA */}
-      <button
-        onClick={handleAgregar}
-        className={`w-full py-3.5 rounded-full font-semibold text-sm transition-all ${
-          agregado
-            ? 'bg-green-500 text-white'
-            : 'bg-[#C4813A] hover:bg-[#A36A28] text-white'
-        }`}
-      >
-        {agregado
-          ? '✓ Agregado al carrito'
-          : cantidad > 1
-            ? `Agregar ${cantidad} piezas — ${formatPrice(precioTotal)}`
-            : 'Agregar al carrito'}
-      </button>
-
-      <p className="text-xs text-[#6B6B6B]">Ref: {producto.asin}</p>
     </div>
   )
 }

@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Us - The Respiratory Atelier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Manrope:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#001d32",
+                        "inverse-surface": "#2e3132",
+                        "tertiary": "#944700",
+                        "on-secondary-fixed-variant": "#004b74",
+                        "on-error": "#ffffff",
+                        "tertiary-container": "#ba5b00",
+                        "on-tertiary-fixed": "#311300",
+                        "secondary-fixed": "#cde5ff",
+                        "tertiary-fixed": "#ffdbc7",
+                        "primary-container": "#1976d2",
+                        "on-tertiary-container": "#fffeff",
+                        "primary": "#005dac",
+                        "on-background": "#191c1d",
+                        "surface-bright": "#f8f9fa",
+                        "on-surface-variant": "#414752",
+                        "outline": "#717783",
+                        "outline-variant": "#c1c6d4",
+                        "secondary-container": "#6cbdfe",
+                        "on-secondary-container": "#004b75",
+                        "on-surface": "#191c1d",
+                        "inverse-on-surface": "#f0f1f2",
+                        "tertiary-fixed-dim": "#ffb688",
+                        "surface-container-high": "#e7e8e9",
+                        "secondary": "#006398",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#005faf",
+                        "surface-container-highest": "#e1e3e4",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#001c3a",
+                        "surface-container": "#edeeef",
+                        "primary-fixed": "#d4e3ff",
+                        "on-error-container": "#93000a",
+                        "surface-container-low": "#f3f4f5",
+                        "surface": "#f8f9fa",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "primary-fixed-dim": "#a5c8ff",
+                        "surface-variant": "#e1e3e4",
+                        "surface-dim": "#d9dadb",
+                        "on-primary-fixed-variant": "#004786",
+                        "inverse-primary": "#a5c8ff",
+                        "on-primary-container": "#fffdff",
+                        "secondary-fixed-dim": "#94ccff",
+                        "on-tertiary-fixed-variant": "#733600",
+                        "background": "#f8f9fa"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope", "sans-serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+<style type="text/tailwindcss">
+        @layer utilities {
+            .glass-panel {
+                @apply bg-surface-container-lowest/70 backdrop-blur-[20px];
+            }
+            .primary-gradient {
+                @apply bg-gradient-to-br from-primary to-primary-container;
+            }
+            .ghost-border {
+                @apply border border-outline-variant/15;
+            }
+            .ambient-shadow {
+                box-shadow: 0 10px 40px -10px rgba(25, 28, 29, 0.05);
+            }
+            .text-balance {
+                text-wrap: balance;
+            }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body antialiased min-h-screen flex flex-col pt-24">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md bg-slate-50 dark:bg-slate-800/50 shadow-sm shadow-blue-900/5 transition-all duration-300">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<!-- Brand -->
+<a class="text-2xl font-bold tracking-tighter text-blue-900 dark:text-blue-100 font-['Manrope'] tracking-tight flex items-center gap-2" href="#">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">air</span>
+                The Respiratory Atelier
+            </a>
+<!-- Navigation Links (Web) -->
+<div class="hidden md:flex items-center gap-8 font-['Manrope'] tracking-tight">
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:text-blue-600 transition-colors duration-300" href="#">Home</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:text-blue-600 transition-colors duration-300" href="#">Products</a>
+<a class="text-blue-700 dark:text-blue-400 border-b-2 border-blue-600 font-semibold text-blue-700 dark:text-blue-400 hover:text-blue-600 transition-colors duration-300" href="#">About Us</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-600 hover:text-blue-600 transition-colors duration-300" href="#">Contact</a>
+</div>
+<!-- Trailing Actions -->
+<div class="flex items-center gap-4">
+<button aria-label="Search" class="text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors duration-300 p-2 scale-95 duration-200 ease-in-out">
+<span class="material-symbols-outlined">search</span>
+</button>
+<button aria-label="Shopping Bag" class="text-slate-600 dark:text-slate-400 hover:text-blue-600 transition-colors duration-300 p-2 scale-95 duration-200 ease-in-out">
+<span class="material-symbols-outlined">shopping_bag</span>
+</button>
+<button class="hidden md:inline-flex items-center justify-center px-5 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-medium rounded-md shadow-sm transition-all duration-200 hover:shadow scale-95 duration-200 ease-in-out font-['Inter'] text-sm">
+                    Shop Now
+                </button>
+<!-- Mobile Menu Toggle -->
+<button class="md:hidden text-slate-600 dark:text-slate-400 p-2">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col gap-24 pb-24">
+<!-- Hero Section: The Mission -->
+<section class="relative w-full min-h-[614px] flex items-center bg-surface-container-low px-6 md:px-12 py-20 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Hero Background" class="w-full h-full object-cover opacity-40 mix-blend-multiply filter blur-[2px]" data-alt="soft warm morning sunlight streaming through sheer white curtains onto a pristine, neatly made white bed in a tranquil modern bedroom" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPrWD2T2JV_YsS9xjJ5PGb6FHiAthhYa4xzG9PckIawzNTTwGTd16FPfGSz5WHYHmkItdapuQ5G3GfLEXY-4asU6voRpMK5ecynrhAsK5Hjy5XX6LUAeeA_DIUZUcKdbX8BPKJUBwpJj6ym8hSRekNxgYmquzMX3whZPPo9dSoJ2BC7iaPv04FZ98humNY7M1BwS6GgAx7OwKbEF5l_sq5gPY-MkIG42tYb7nhHdmDfRWl3_07NiQrdXVSQm_zGVz3ZiQ-180j4UYu"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface-container-low via-surface-container-low/80 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-7 flex flex-col gap-6">
+<span class="font-label text-sm uppercase tracking-widest text-primary font-semibold">Our Mission</span>
+<h1 class="font-headline text-5xl md:text-6xl font-extrabold text-on-surface tracking-[-0.02em] leading-[1.1] text-balance">
+                        Elevating Sleep Quality Across Borders.
+                    </h1>
+<p class="font-body text-lg text-on-surface-variant max-w-2xl leading-relaxed mt-4">
+                        We believe that access to premium respiratory care should not be limited by geography. The Respiratory Atelier bridges the gap, bringing state-of-the-art CPAP technology and sleep wellness solutions directly to Mexico with unparalleled precision and care.
+                    </p>
+</div>
+</div>
+</section>
+<!-- The Import Process Section -->
+<section class="w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col gap-16">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-l-4 border-primary pl-6">
+<div>
+<h2 class="font-headline text-4xl font-bold text-on-surface tracking-tight">The Import Process</h2>
+<p class="font-body text-on-surface-variant mt-2 max-w-xl">Seamless logistics designed for critical medical equipment. From our USA facilities to your door in Mexico.</p>
+</div>
+<div class="flex items-center gap-2 bg-surface-container-lowest px-4 py-2 rounded-full ambient-shadow">
+<span class="material-symbols-outlined text-primary text-xl">speed</span>
+<span class="font-label text-sm font-semibold text-primary">7-Day Premium Delivery</span>
+</div>
+</div>
+<!-- Process Steps (Horizontal layout on large screens, vertical on mobile) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Step 1 -->
+<div class="flex flex-col gap-6 p-8 bg-surface-container-lowest rounded-xl ambient-shadow relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
+<div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-8xl">inventory_2</span>
+</div>
+<div class="w-12 h-12 rounded-full primary-gradient flex items-center justify-center shadow-lg shadow-primary/20">
+<span class="material-symbols-outlined text-on-primary">inventory_2</span>
+</div>
+<div>
+<span class="font-label text-xs font-bold text-primary mb-1 block">Phase 01</span>
+<h3 class="font-headline text-xl font-semibold text-on-surface mb-3">Procurement &amp; QC</h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                            We source only the latest, FDA-approved respiratory devices directly from top-tier US manufacturers. Every unit undergoes a rigorous pre-shipment quality check.
+                        </p>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col gap-6 p-8 bg-surface-container-lowest rounded-xl ambient-shadow relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
+<div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-8xl">local_shipping</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">local_shipping</span>
+</div>
+<div>
+<span class="font-label text-xs font-bold text-primary mb-1 block">Phase 02</span>
+<h3 class="font-headline text-xl font-semibold text-on-surface mb-3">Expedited Transit</h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                            Utilizing specialized medical freight channels, your equipment bypasses standard delays, ensuring secure and climate-controlled transport across the border.
+                        </p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="flex flex-col gap-6 p-8 bg-surface-container-lowest rounded-xl ambient-shadow relative overflow-hidden group hover:-translate-y-1 transition-transform duration-300">
+<div class="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-8xl">task_alt</span>
+</div>
+<div class="w-12 h-12 rounded-full bg-surface-container-high flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">task_alt</span>
+</div>
+<div>
+<span class="font-label text-xs font-bold text-primary mb-1 block">Phase 03</span>
+<h3 class="font-headline text-xl font-semibold text-on-surface mb-3">White-Glove Delivery</h3>
+<p class="font-body text-sm text-on-surface-variant leading-relaxed">
+                            Delivered directly to your residence or clinic in Mexico within 7 days. We handle all import documentation, providing you with a hassle-free experience.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Professional Billing Section (Asymmetric / Bento-style) -->
+<section class="w-full max-w-7xl mx-auto px-6 md:px-12">
+<div class="bg-surface-container rounded-2xl p-2 sm:p-4 overflow-hidden">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full">
+<!-- Content Side -->
+<div class="bg-surface-container-lowest rounded-xl p-8 md:p-12 flex flex-col justify-center h-full">
+<div class="w-12 h-12 rounded-lg bg-surface-container-low flex items-center justify-center mb-8">
+<span class="material-symbols-outlined text-secondary text-2xl">receipt_long</span>
+</div>
+<h2 class="font-headline text-3xl md:text-4xl font-bold text-on-surface tracking-tight mb-4">Professional Billing &amp; Facturación</h2>
+<p class="font-body text-on-surface-variant text-lg mb-8 leading-relaxed">
+                            We understand the complexities of international medical purchases. That's why we offer fully compliant Mexican tax invoices (Facturas CFDI) for all your equipment and supplies.
+                        </p>
+<ul class="space-y-4 font-body text-sm text-on-surface">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl shrink-0 mt-0.5">check_circle</span>
+<span>Official CFDI 4.0 issued for every transaction.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl shrink-0 mt-0.5">check_circle</span>
+<span>Deductible medical expenses for your peace of mind.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl shrink-0 mt-0.5">check_circle</span>
+<span>Transparent pricing with all import duties and IVA included.</span>
+</li>
+</ul>
+</div>
+<!-- Image/Visual Side -->
+<div class="relative bg-surface-container-low rounded-xl overflow-hidden min-h-[300px] lg:min-h-full">
+<img alt="Professional Billing" class="absolute inset-0 w-full h-full object-cover" data-alt="close up of a modern office desk with a sleek laptop, a neat stack of documents, and a minimalist pen, bright professional lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHY6ZtpNIxYYBGzMFRFz_bUvWUFaGHpgI5OUj2rgfxwt3IO3a7OLUEbAd7dVMfRsTkoBQmk9WT8QLpgM_fJjZyDD6rM5eSTNDQHL0y_YFn0vkmcg4-JMw8MR3g-JY1BCseWoY1swu_eP0fp42ENM2eXMC7lqHBv-qFDGKRvTYEnbkIGWbXHoaryE9Kt-mVZt_ONVuZNWAS5VMVPuIKoJMbqZ1MOnv4dJnARVUUNeRpjbtJ9PrwdLLGfpyC6GJZHM44ROVB7U14Q7m9"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<!-- Floating Info Card -->
+<div class="absolute bottom-6 left-6 right-6 glass-panel rounded-lg p-5 ghost-border flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-primary">verified_user</span>
+</div>
+<div>
+<p class="font-headline font-semibold text-on-surface text-sm">SAT Compliant</p>
+<p class="font-body text-xs text-on-surface-variant mt-1">Processed automatically upon delivery confirmation.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 bg-gradient-to-t from-slate-100 to-white dark:from-slate-900 dark:to-slate-950 w-full py-12 px-8 flat no-border mt-auto">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-7xl mx-auto">
+<!-- Brand -->
+<div class="col-span-1 md:col-span-1 flex flex-col gap-4">
+<span class="text-lg font-semibold text-blue-900 dark:text-blue-200 font-['Inter'] text-sm flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">air</span>
+                    The Respiratory Atelier
+                </span>
+<p class="font-['Inter'] text-sm text-slate-500 dark:text-slate-500 opacity-80">
+                    © 2024 The Respiratory Atelier. Precise Respiratory Care.
+                </p>
+</div>
+<!-- Links -->
+<div class="col-span-1 md:col-span-3 flex flex-wrap justify-start md:justify-end gap-x-8 gap-y-4 font-['Inter'] text-sm">
+<a class="text-slate-500 dark:text-slate-500 hover:text-blue-700 hover:text-blue-700 transition-all opacity-80 hover:opacity-100" href="#">Shipping Policy</a>
+<a class="text-slate-500 dark:text-slate-500 hover:text-blue-700 hover:text-blue-700 transition-all opacity-80 hover:opacity-100" href="#">Billing &amp; Factoring</a>
+<a class="text-slate-500 dark:text-slate-500 hover:text-blue-700 hover:text-blue-700 transition-all opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-500 hover:text-blue-700 hover:text-blue-700 transition-all opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>

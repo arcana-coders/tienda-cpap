@@ -1,7 +1,7 @@
 export const dynamic = 'force-dynamic'
 
 import { db, schema } from '@/lib/db'
-import { eq, and, ilike } from 'drizzle-orm'
+import { eq, and, ilike, or } from 'drizzle-orm'
 import ProductCard from '@/components/catalog/ProductCard'
 import Link from 'next/link'
 
@@ -14,8 +14,27 @@ export default async function BuscarPage({ searchParams }: Props) {
   const query = q.trim()
 
   const productos = query
-    ? await db.select().from(schema.productos)
-        .where(and(eq(schema.productos.activo, true), ilike(schema.productos.titulo, `%${query}%`)))
+    ? await db.select({
+          id: schema.productos.id,
+          titulo: schema.productos.titulo,
+          slug: schema.productos.slug,
+          precio: schema.productos.precio,
+          precioCompare: schema.productos.precioCompare,
+          imagenes: schema.productos.imagenes,
+          marca: schema.productos.marca,
+          asin: schema.productos.asin,
+          categoriaId: schema.productos.categoriaId,
+        })
+        .from(schema.productos)
+        .where(
+          and(
+            eq(schema.productos.activo, true), 
+            or(
+              ilike(schema.productos.titulo, `%${query}%`),
+              ilike(schema.productos.asin, `%${query}%`)
+            )
+          )
+        )
         .limit(48)
     : []
 

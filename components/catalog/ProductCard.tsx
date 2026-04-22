@@ -1,12 +1,13 @@
 'use client'
 
-import Image from 'next/image'
 import Link from 'next/link'
 import { useCartStore } from '@/lib/store'
+import { useState } from 'react'
+import { cleanText } from '@/lib/strings'
 
 interface Product {
   id: string
-  asin: string
+  asin?: string | null
   titulo: string
   slug: string
   precio: number
@@ -22,6 +23,7 @@ interface Props {
 
 export default function ProductCard({ producto }: Props) {
   const { addItem, openCart } = useCartStore() as any
+  const [added, setAdded] = useState(false)
 
   const formatPrice = (n: number) =>
     n.toLocaleString('es-MX', { style: 'currency', currency: 'MXN' })
@@ -36,6 +38,8 @@ export default function ProductCard({ producto }: Props) {
       imagen: (producto.imagenes as any)?.[0] ?? '',
     })
     openCart()
+    setAdded(true)
+    setTimeout(() => setAdded(false), 1800)
   }
 
   const imagenes = (producto.imagenes as any) ?? []
@@ -47,60 +51,74 @@ export default function ProductCard({ producto }: Props) {
   return (
     <Link
       href={`/producto/${producto.slug}`}
-      className="group flex flex-col bg-[#F5F5F5] rounded-xl border border-[#E0E0E0] hover:shadow-md transition-shadow overflow-hidden"
+      className="group flex flex-col bg-white rounded-2xl md:rounded-3xl border border-outline-variant/20 overflow-hidden hover:shadow-xl hover:shadow-primary/5 hover:border-transparent transition-all duration-300"
     >
-      {/* Imagen — fondo blanco para que haga match con el producto */}
-      <div className="relative aspect-square bg-white">
+      {/* Image */}
+      <div className="relative aspect-square bg-surface-container-lowest overflow-hidden">
         {imagen ? (
-          <Image
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
             src={imagen}
-            alt={producto.titulo}
-            fill
-            className="object-contain p-4 group-hover:scale-105 transition-transform duration-300"
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            alt={cleanText(producto.titulo)}
+            className="absolute inset-0 w-full h-full object-contain p-6 group-hover:scale-105 transition-transform duration-500 ease-out"
+            loading="lazy"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-4xl text-[#E0E0E0]">
-            📦
+          <div className="absolute inset-0 flex items-center justify-center text-outline-variant">
+            <span className="material-symbols-outlined text-[48px]">inventory_2</span>
           </div>
         )}
         {descuento > 5 && (
-          <span className="absolute top-2 left-2 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded">
+          <span className="absolute top-3 left-3 bg-error text-on-error text-[10px] font-bold px-2.5 py-1 rounded-full tracking-wide">
             -{descuento}%
           </span>
         )}
       </div>
 
-      {/* Info — sobre fondo gris suave */}
-      <div className="flex flex-col flex-1 p-3">
+      {/* Info */}
+      <div className="flex flex-col flex-1 p-5 md:p-6 bg-surface-container-lowest">
         {producto.marca && (
-          <span className="text-[11px] text-[#6B6B6B] uppercase tracking-wide mb-1">
+          <span className="text-[10px] text-on-surface-variant font-bold uppercase tracking-[0.2em] font-headline mb-1">
             {producto.marca}
           </span>
         )}
-        <p className="text-sm text-[#1A1A1A] line-clamp-2 leading-snug flex-1">
-          {producto.titulo}
+        <p className="text-sm md:text-base text-on-surface font-headline font-bold line-clamp-2 leading-snug flex-1">
+          {cleanText(producto.titulo)}
         </p>
-        <div className="mt-2">
+
+        <div className="mt-4">
           <div className="flex items-baseline gap-2">
-            <span className="text-base font-bold text-[#1A1A1A]">
+            <span className="text-lg md:text-xl font-extrabold font-headline tracking-tight text-primary">
               {formatPrice(precio)}
             </span>
             {precioCompare && precioCompare > precio && (
-              <span className="text-xs text-[#6B6B6B] line-through">
+              <span className="text-xs font-medium text-outline line-through">
                 {formatPrice(precioCompare)}
               </span>
             )}
           </div>
-          <p className="text-[11px] text-green-600 font-medium mt-0.5">
-            🚚 Envío gratis · Facturamos
+          <p className="flex items-center gap-1.5 text-[11px] text-secondary font-semibold font-body mt-1">
+            <span className="material-symbols-outlined text-[14px]">local_shipping</span>
+            <span>Envío Gratis · 7–9 días</span>
           </p>
         </div>
+
+        {/* Button */}
         <button
           onClick={handleAddToCart}
-          className="mt-3 w-full py-2 bg-[#C4813A] hover:bg-[#A36A28] text-white text-sm font-semibold rounded-full transition-colors"
+          className={`
+            mt-4 w-full py-3 text-sm font-bold font-body rounded-xl transition-all duration-300 flex items-center justify-center gap-2
+            ${added
+              ? 'bg-secondary text-on-secondary shadow-md'
+              : 'bg-surface-container text-primary hover:bg-primary hover:text-on-primary hover:shadow-lg hover:-translate-y-0.5'
+            }
+          `}
         >
-          Agregar al carrito
+          {added ? (
+            <><span className="material-symbols-outlined text-[18px]">check_circle</span><span>Agregado a la Bolsa</span></>
+          ) : (
+            <><span className="material-symbols-outlined text-[18px]">shopping_cart</span><span>Agregar a la Bolsa</span></>
+          )}
         </button>
       </div>
     </Link>

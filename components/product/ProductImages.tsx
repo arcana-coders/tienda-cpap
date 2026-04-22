@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import Image from 'next/image'
 
 interface Props {
   imagenes: string[]
@@ -13,42 +12,58 @@ export default function ProductImages({ imagenes, titulo }: Props) {
 
   if (!imagenes || imagenes.length === 0) {
     return (
-      <div className="aspect-square bg-[#F5F5F5] rounded-2xl flex items-center justify-center text-6xl">
-        📦
+      <div className="flex flex-col gap-6 lg:sticky lg:top-32">
+        <div className="bg-surface-container-lowest rounded-xl overflow-hidden aspect-square flex items-center justify-center p-8 relative">
+          <span className="material-symbols-outlined text-[48px] text-outline-variant">inventory_2</span>
+        </div>
       </div>
     )
   }
 
   return (
-    <div className="flex gap-3">
+    <div className="flex flex-col gap-6 lg:sticky lg:top-32">
+      {/* Main image */}
+      <div className="bg-surface-container-lowest rounded-xl lg:rounded-[2rem] overflow-hidden aspect-square flex items-center justify-center p-8 relative border border-outline-variant/10">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          key={activa}
+          src={imagenes[activa]}
+          alt={titulo}
+          className="w-full h-full object-contain drop-shadow-xl"
+          loading="eager"
+          decoding="sync"
+        />
+        {/*
+        <div className="absolute top-6 left-6 bg-surface-container-high px-4 py-1.5 rounded-full text-sm font-medium text-on-surface">
+            The Respiratory Atelier
+        </div>
+        */}
+      </div>
+
       {/* Thumbnails */}
       {imagenes.length > 1 && (
-        <div className="flex flex-col gap-2 w-16">
-          {imagenes.map((img, i) => (
+        <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-4 gap-3 lg:gap-4">
+          {imagenes.slice(0, 5).map((img, i) => (
             <button
               key={i}
               onClick={() => setActiva(i)}
-              className={`relative w-14 h-14 rounded-lg overflow-hidden border-2 transition-colors ${
-                activa === i ? 'border-[#C4813A]' : 'border-[#E0E0E0] hover:border-[#C4813A]/50'
+              className={`bg-surface-container-lowest rounded-xl aspect-square overflow-hidden cursor-pointer p-2 lg:p-4 transition-all duration-200 flex items-center justify-center ${
+                activa === i
+                  ? 'border-2 border-primary ring-2 ring-primary/20 scale-[0.98]'
+                  : 'border border-outline-variant/20 hover:border-primary/50'
               }`}
             >
-              <Image src={img} alt={`${titulo} ${i + 1}`} fill sizes="56px" className="object-contain p-1" />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={img}
+                alt={`${titulo} ${i + 1}`}
+                className="w-full h-full object-contain"
+                loading="lazy"
+              />
             </button>
           ))}
         </div>
       )}
-
-      {/* Imagen principal */}
-      <div className="flex-1 relative aspect-square bg-[#F5F5F5] rounded-2xl overflow-hidden">
-        <Image
-          src={imagenes[activa]}
-          alt={titulo}
-          fill
-          className="object-contain p-6"
-          sizes="(max-width: 768px) 100vw, 50vw"
-          priority
-        />
-      </div>
     </div>
   )
 }
