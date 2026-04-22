@@ -83,7 +83,7 @@ function HeroProduct({ producto }: { producto: Product }) {
             ${added ? 'bg-secondary text-on-secondary' : 'bg-primary hover:bg-primary-container text-on-primary shadow-md hover:shadow-lg hover:-translate-y-0.5'}`}
         >
           <span className="material-symbols-outlined text-[20px]">shopping_cart</span>
-          {added ? 'Agregado a la bolsa ✓' : 'Agregar a la Bolsa'}
+          {added ? 'Agregado al carrito ✓' : 'Agregar al Carrito'}
         </button>
       </div>
     </Link>

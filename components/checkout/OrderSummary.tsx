@@ -249,14 +249,20 @@ export default function OrderSummary({ paymentMethod, setPaymentMethod, clienteD
           </div>
         </div>
 
-        {/* Garantía */}
-        <div className="mt-8 flex items-center gap-3 px-5 py-4 bg-[#fbf9f8] rounded-2xl border border-[#c4c8ce]/10">
-          <div className="w-10 h-10 rounded-full bg-white shadow-sm flex items-center justify-center text-[#43673c] flex-shrink-0">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        {/* Seguridad */}
+        <div className="mt-8 pt-6 border-t border-[#c4c8ce]/10">
+          <div className="bg-[#fbf9f8] rounded-2xl p-5 border border-[#c4c8ce]/10 flex flex-col items-center">
+            <div className="flex flex-wrap justify-center items-center gap-4 w-full mb-3">
+              <img src="/images/badge-verisign.png" alt="Verisign" className="h-10 w-auto object-contain" />
+              <img src="/images/badge-paypal.png" alt="PayPal" className="h-10 w-auto object-contain" />
+              <img src="/images/badge-truste.png" alt="TRUSTe" className="h-10 w-auto object-contain" />
+              <img src="/images/badge-ssl.png" alt="SSL" className="h-10 w-auto object-contain" />
+            </div>
+            <p className="text-[9px] font-black text-[#74787e] uppercase tracking-[0.2em] mb-3 text-center">Pago 100% Seguro</p>
+            <p className="text-[10px] font-bold text-[#44494e] leading-tight text-center px-2 border-t border-[#c4c8ce]/10 pt-3">
+              Tu compra está protegida por encriptación SSL de 256 bits y procesadores de pago certificados.
+            </p>
           </div>
-          <p className="text-[11px] font-bold text-[#44494e] leading-tight">
-            Tu compra está protegida por nuestra <span className="text-[#00386c]">Garantía de Satisfacción CPAP</span>.
-          </p>
         </div>
       </div>
     </PayPalScriptProvider>

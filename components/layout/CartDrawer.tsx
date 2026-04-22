@@ -92,8 +92,9 @@ export default function CartDrawer() {
                     </div>
                     <button
                       onClick={() => removeItem(item.id)}
-                      className="text-[10px] font-black text-[#74787e] uppercase tracking-widest hover:text-red-600 transition-colors ml-auto"
+                      className="flex items-center gap-1.5 text-[10px] font-black text-[#74787e] uppercase tracking-widest hover:text-red-600 transition-colors ml-auto"
                     >
+                      <span className="material-symbols-outlined text-[16px]">delete</span>
                       Remover
                     </button>
                   </div>
@@ -123,12 +124,12 @@ export default function CartDrawer() {
             <Link
               href="/checkout"
               onClick={closeCart}
-              className="group relative block w-full py-5 bg-[#00386c] hover:bg-[#1a4f8b] text-white font-black rounded-2xl text-center text-sm transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 overflow-hidden"
+              className="group relative block w-full py-6 bg-[#00386c] hover:bg-[#1a4f8b] text-white font-black rounded-2xl text-center text-base transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 overflow-hidden border-2 border-white/10"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-              <span className="relative z-10 flex items-center justify-center gap-2">
-                Proceder al Pago
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
+              <span className="relative z-10 flex items-center justify-center gap-3 tracking-tight">
+                PROCEDER AL PAGO
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </span>
             </Link>
           </div>

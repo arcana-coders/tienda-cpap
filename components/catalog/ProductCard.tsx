@@ -115,9 +115,9 @@ export default function ProductCard({ producto }: Props) {
           `}
         >
           {added ? (
-            <><span className="material-symbols-outlined text-[18px]">check_circle</span><span>Agregado a la Bolsa</span></>
+            <><span className="material-symbols-outlined text-[18px]">check_circle</span><span>Agregado al Carrito</span></>
           ) : (
-            <><span className="material-symbols-outlined text-[18px]">shopping_cart</span><span>Agregar a la Bolsa</span></>
+            <><span className="material-symbols-outlined text-[18px]">shopping_cart</span><span>Agregar al Carrito</span></>
           )}
         </button>
       </div>

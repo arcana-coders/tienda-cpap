@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useCartStore } from '@/lib/store'
 import { useState, useEffect, useRef } from 'react'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import CartDrawer from './CartDrawer'
 
 // Fallback categories for initial load/SSR
@@ -76,6 +76,7 @@ function MobileSearchBar({ onClose }: { onClose: () => void }) {
 
 /* ── Main Header ── */
 export default function Header({ initialCategories = [] }: { initialCategories?: { nombre: string, slug: string }[] }) {
+  const pathname = usePathname()
   const { count, toggleCart } = useCartStore()
   const [menuOpen, setMenuOpen] = useState(false)
   const [searchOpen, setSearchOpen] = useState(false)
@@ -120,9 +121,24 @@ export default function Header({ initialCategories = [] }: { initialCategories?:
 
           <div className="hidden lg:flex items-center gap-6">
             <nav className="flex gap-6 items-center font-headline tracking-tight text-sm">
-              <Link href="/" className="text-on-surface-variant hover:text-primary transition-colors duration-300">Inicio</Link>
-              <Link href="/categorias" className="text-primary font-semibold border-b-[1.5px] border-primary pb-0.5">Catálogo</Link>
-              <Link href="/contacto" className="text-on-surface-variant hover:text-primary transition-colors duration-300">Contacto</Link>
+              <Link 
+                href="/" 
+                className={`${pathname === '/' ? 'text-primary font-semibold' : 'text-on-surface-variant hover:text-primary'} transition-colors duration-300`}
+              >
+                Inicio
+              </Link>
+              <Link 
+                href="/categorias" 
+                className={`${(pathname.startsWith('/categorias') || pathname.startsWith('/categoria') || pathname.startsWith('/buscar')) ? 'text-primary font-semibold border-b-[1.5px] border-primary pb-0.5' : 'text-on-surface-variant hover:text-primary'} transition-colors duration-300`}
+              >
+                Catálogo
+              </Link>
+              <Link 
+                href="/contacto" 
+                className={`${pathname === '/contacto' ? 'text-primary font-semibold' : 'text-on-surface-variant hover:text-primary'} transition-colors duration-300`}
+              >
+                Contacto
+              </Link>
             </nav>
             <DesktopSearchBar />
           </div>
@@ -184,10 +200,23 @@ export default function Header({ initialCategories = [] }: { initialCategories?:
               </button>
             </div>
             <nav className="flex-1 overflow-y-auto bg-white">
-              <div className="px-6 py-4 font-headline text-xs font-bold text-outline uppercase tracking-wider">Categorías</div>
-              <Link href="/categorias" onClick={() => setMenuOpen(false)} className="flex items-center px-6 py-3 text-sm font-semibold text-primary hover:bg-surface-container-low transition-colors">
-                Todos los Productos
+              <div className="px-6 py-4 font-headline text-xs font-bold text-outline uppercase tracking-wider">Navegación</div>
+              <Link 
+                href="/" 
+                onClick={() => setMenuOpen(false)} 
+                className={`flex items-center px-6 py-3 text-sm font-semibold ${pathname === '/' ? 'text-primary bg-primary/5' : 'text-on-surface'} hover:bg-surface-container-low transition-colors`}
+              >
+                <span className="material-symbols-outlined mr-3 text-[20px]">home</span> Inicio
               </Link>
+              <Link 
+                href="/categorias" 
+                onClick={() => setMenuOpen(false)} 
+                className={`flex items-center px-6 py-3 text-sm font-semibold ${(pathname.startsWith('/categorias') || pathname.startsWith('/categoria')) ? 'text-primary bg-primary/5' : 'text-on-surface'} hover:bg-surface-container-low transition-colors`}
+              >
+                <span className="material-symbols-outlined mr-3 text-[20px]">grid_view</span> Todos los Productos
+              </Link>
+
+              <div className="px-6 py-4 mt-2 font-headline text-xs font-bold text-outline uppercase tracking-wider border-t border-outline-variant/5">Categorías</div>
               {categorias.map(cat => (
                 <Link key={cat.slug} href={`/categoria/${cat.slug}`} onClick={() => setMenuOpen(false)} className="flex items-center px-6 py-3 text-sm font-body text-on-surface hover:bg-surface-container-low transition-colors">
                   {cat.nombre}

@@ -59,6 +59,7 @@ html {
   background: var(--color-surface);
   color: var(--color-on-surface);
   -webkit-font-smoothing: antialiased;
+  font-size: 105%;
 }
 
 body {

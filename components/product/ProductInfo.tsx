@@ -128,7 +128,7 @@ export default function ProductInfo({ producto }: { producto: Producto }) {
           `}
         >
           {agregado ? (
-            <><span className="material-symbols-outlined fill-current">check_circle</span><span>Agregado a tu Bolsa</span></>
+            <><span className="material-symbols-outlined fill-current">check_circle</span><span>Agregado al Carrito</span></>
           ) : (
             <><span className="material-symbols-outlined">shopping_bag</span><span>Comprar — {formatPrice(precioTotal)}</span></>
           )}
@@ -148,6 +148,26 @@ export default function ProductInfo({ producto }: { producto: Producto }) {
             <div>
               <p className="font-bold text-on-surface text-sm font-body">Facturación CFDI</p>
               <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">Facturamos todos tus pedidos de forma electrónica según regulaciones del SAT.</p>
+            </div>
+          </div>
+
+          <div className="bg-[#c1ebb5]/10 p-5 rounded-xl border border-[#c1ebb5]/20">
+            <div className="flex items-start gap-4 mb-4">
+              <span className="material-symbols-outlined text-[#43673c] mt-0.5">verified_user</span>
+              <div>
+                <p className="font-bold text-[#1b1c1c] text-sm font-body">Garantía de Satisfacción</p>
+                <p className="text-xs text-[#44494e] mt-1 leading-relaxed text-balance">Si no estás satisfecho con tu compra, te devolvemos tu dinero.</p>
+              </div>
+            </div>
+            
+            <div className="pt-4 border-t border-[#43673c]/10 flex flex-col items-center w-full">
+              <div className="flex flex-wrap justify-center items-center gap-4 w-full">
+                <img src="/images/badge-verisign.png" alt="Verisign" className="h-10 w-auto object-contain" />
+                <img src="/images/badge-paypal.png" alt="PayPal" className="h-10 w-auto object-contain" />
+                <img src="/images/badge-truste.png" alt="TRUSTe" className="h-10 w-auto object-contain" />
+                <img src="/images/badge-ssl.png" alt="SSL" className="h-10 w-auto object-contain" />
+              </div>
+              <p className="text-[9px] font-black text-[#74787e] uppercase tracking-[0.2em] mt-3 text-center w-full">Pago 100% Seguro con Encriptación SSL</p>
             </div>
           </div>
         </div>
