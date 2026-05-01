@@ -40,4 +40,31 @@ Para garantizar la estabilidad del blueprint, se implementaron las siguientes me
 - [Catálogo de MCPs](file:///c:/Asistente/mcp_catalog.md)
 
 ---
+
+### 🛡️ Transformación Estratégica (Mayo 2026)
+
+Tras estabilizar el stack técnico, se realizó un pivote estratégico para pasar de un "catálogo genérico de importación" a una **"plataforma de autoridad en salud respiratoria"**.
+
+**¿Por qué este cambio?**
+El cliente objetivo (adultos 40-65 años con apnea) no busca un producto técnico; busca una solución para volver a dormir bien. La confianza es el factor determinante de compra.
+
+#### Mejoras Realizadas:
+
+1.  **Rediseño de Homepage (Tono de Empatía)**:
+    - Se reemplazó el grid de productos tradicional por un **Hero Section** enfocado en el problema del usuario ("¿Cansado de dormir mal?").
+    - Se añadieron secciones de **Educación** (síntomas/soluciones) y **Testimonios Reales** para reducir la fricción psicológica.
+
+2.  **Ecosistema de Contenido y Autoridad**:
+    - Implementación de un **Blog Educativo** (`/blog`) y una **Guía de Apnea del Sueño** (`/guia-apnea-sueno`).
+    - **Uso de IA**: Se generaron imágenes fotorrealistas personalizadas para estos artículos, evitando el uso de stock genérico y reforzando la marca propia.
+
+3.  **Consolidación de Identidad (Cpap-Mexico)**:
+    - Eliminación total de la marca heredada "Respiratory Atelier".
+    - Estandarización de toda la comunicación bajo la marca **Cpap-Mexico**, incluyendo correos (`contacto@cpap-mexico.com`), redes sociales (FB/IG) y páginas legales.
+
+4.  **Optimización de Conversión (WhatsApp-First)**:
+    - El botón de WhatsApp ahora incluye un **ping de animación** y un **tooltip dinámico** para guiar al usuario.
+    - Mensajes prellenados específicos para iniciar una asesoría personalizada, no solo una venta.
+
+---
 *Mantenido por Rocket para Arturo Carrillo.*
