@@ -35,7 +35,7 @@ export default function ProductImages({ imagenes, titulo }: Props) {
         />
         {/*
         <div className="absolute top-6 left-6 bg-surface-container-high px-4 py-1.5 rounded-full text-sm font-medium text-on-surface">
-            The Respiratory Atelier
+            Cpap-Mexico
         </div>
         */}
       </div>

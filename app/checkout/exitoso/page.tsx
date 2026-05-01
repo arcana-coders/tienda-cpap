@@ -61,7 +61,7 @@ function SuccessContent() {
           </div>
 
           <p className="success-text mt-12 text-[11px] font-bold text-[#74787e] leading-tight max-w-xs mx-auto">
-            Si tienes alguna duda sobre tu pedido, contáctanos a <span className="text-[#00386c]">soporte@cpap.com.mx</span> mencionando tu número de pedido.
+            Si tienes alguna duda sobre tu pedido, contáctanos a <span className="text-[#00386c]">contacto@cpap-mexico.com</span> mencionando tu número de pedido.
           </p>
         </div>
       </div>

@@ -67,7 +67,7 @@ const PASOS = [
   {
     n: 1,
     titulo: 'Notificación inmediata',
-    desc: <>Contacta con <a href="mailto:contacto@cpap.com" className="text-[#00386c] font-bold hover:underline">contacto@cpap.com</a> adjuntando tu número de orden y evidencia relevante.</>,
+    desc: <>Contacta con <a href="mailto:contacto@cpap-mexico.com" className="text-[#00386c] font-bold hover:underline">contacto@cpap-mexico.com</a> adjuntando tu número de orden y evidencia relevante.</>,
   },
   {
     n: 2,
@@ -299,7 +299,7 @@ export default function DevolucionesPage() {
                     Estamos listos para escucharte. Envía los detalles de tu caso y nuestro equipo editorial te contactará con una solución personalizada.
                 </p>
                 <div className="flex flex-wrap justify-center md:justify-start gap-4">
-                    <a href="mailto:contacto@cpap.com" className="h-14 px-10 rounded-full bg-white text-[#00386c] font-black text-xs uppercase tracking-widest hover:bg-[#c1ebb5] hover:text-[#43673c] transition-all flex items-center justify-center">
+                    <a href="mailto:contacto@cpap-mexico.com" className="h-14 px-10 rounded-full bg-white text-[#00386c] font-black text-xs uppercase tracking-widest hover:bg-[#c1ebb5] hover:text-[#43673c] transition-all flex items-center justify-center">
                         Enviar Correo de Garantía
                     </a>
                     <Link href="/contacto" className="h-14 px-10 rounded-full border border-white/20 text-white font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-all flex items-center justify-center">

@@ -22,10 +22,10 @@ export async function POST(request: Request) {
     if (process.env.RESEND_API_KEY) {
       const resend = new Resend(process.env.RESEND_API_KEY)
       await resend.emails.send({
-        from: 'CPAP <contacto@cpap.com>',
+        from: 'CPAP-México <contacto@cpap-mexico.com>',
         to: [email],
         subject: '¡Bienvenido a CPAP! Ya eres parte de la lista 🎉',
-        text: `¡Hola!\n\nGracias por suscribirte a CPAP México. Serás el primero en enterarte de ofertas exclusivas y nuevos productos.\n\nVisítanos en: https://cpap.com\n\n— Equipo CPAP`,
+        text: `¡Hola!\n\nGracias por suscribirte a CPAP-México. Serás el primero en enterarte de ofertas exclusivas y nuevos productos.\n\nVisítanos en: https://cpap-mexico.com\n\n— Equipo CPAP-México`,
       }).catch(err => console.error('Resend newsletter error:', err))
     }
 

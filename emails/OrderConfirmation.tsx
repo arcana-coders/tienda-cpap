@@ -99,11 +99,11 @@ export const OrderConfirmationEmail = ({
             <Section style={footer}>
               <Text style={footerText}>
                 Si tienes dudas sobre tu pedido, contáctanos a{" "}
-                <Link href="mailto:contacto@capalsa.com" style={link}>
-                  contacto@capalsa.com
+                <Link href="mailto:contacto@cpap-mexico.com" style={link}>
+                  contacto@cpap-mexico.com
                 </Link>
               </Text>
-              <Text style={footerBrand}>© 2026 Capalsa. Productos originales desde USA.</Text>
+              <Text style={footerBrand}>© 2026 CPAP-México. Productos originales desde USA.</Text>
             </Section>
           </Section>
         </Container>

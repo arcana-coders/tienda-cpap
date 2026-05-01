@@ -19,8 +19,8 @@ export async function POST(request: Request) {
     if (process.env.RESEND_API_KEY) {
       const resend = new Resend(process.env.RESEND_API_KEY)
       await resend.emails.send({
-        from: 'CPAP <contacto@cpap.com>',
-        to: ['contacto@cpap.com'],
+        from: 'CPAP-México <contacto@cpap-mexico.com>',
+        to: ['contacto@cpap-mexico.com'],
         subject: `[Contacto] ${asunto} — ${nombre}`,
         text: `Nuevo mensaje de contacto:\n\nNombre: ${nombre}\nEmail: ${email}\nAsunto: ${asunto}\n\nMensaje:\n${mensaje}`,
       }).catch(err => console.error('Resend contact error:', err))

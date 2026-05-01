@@ -18,7 +18,7 @@ export async function sendOrderConfirmation({
 
   try {
     const data = await resend.emails.send({
-      from: 'CPAP <contacto@cpap.com>',
+      from: 'CPAP-México <contacto@cpap-mexico.com>',
       to: [email],
       subject: `Confirmación de Pedido: ${orderNumber}`,
       react: OrderConfirmationEmail({
@@ -32,8 +32,8 @@ export async function sendOrderConfirmation({
 
     // Copia de nueva venta a la cuenta de negocio
     await resend.emails.send({
-      from: 'CPAP <contacto@cpap.com>',
-      to: ['contacto@cpap.com'],
+      from: 'CPAP-México <contacto@cpap-mexico.com>',
+      to: ['contacto@cpap-mexico.com'],
       subject: `NUEVA VENTA: ${orderNumber}`,
       text: `Se ha recibido un nuevo pedido de ${customerName} por un total de ${total} MXN.`,
     });

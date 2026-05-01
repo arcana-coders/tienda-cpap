@@ -45,8 +45,8 @@ const contacts = [
     icon: <IconMail />,
     label: 'Correo electrónico',
     detail: 'Para pedidos, dudas y facturación',
-    value: 'hola@cpap-mexico.com',
-    href: 'mailto:hola@cpap-mexico.com',
+    value: 'contacto@cpap-mexico.com',
+    href: 'mailto:contacto@cpap-mexico.com',
     isExternal: false,
     color: '#00386c'
   },

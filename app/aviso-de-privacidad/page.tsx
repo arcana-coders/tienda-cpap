@@ -1,8 +1,8 @@
 import React from 'react'
 
 export const metadata = {
-  title: 'Aviso de Privacidad | The Respiratory Atelier',
-  description: 'Conoce cómo protegemos tus datos personales en The Respiratory Atelier.',
+  title: 'Aviso de Privacidad | Cpap-Mexico',
+  description: 'Conoce cómo protegemos tus datos personales en Cpap-Mexico.',
 }
 
 export default function PrivacyPage() {
@@ -14,7 +14,7 @@ export default function PrivacyPage() {
         <section className="space-y-4">
           <h2 className="text-2xl font-headline font-semibold text-primary">1. Identidad y Domicilio del Responsable</h2>
           <p className="text-on-surface-variant font-body leading-relaxed">
-            The Respiratory Atelier (CPAP-MEXICO), con domicilio en la Ciudad de México, es el responsable del uso y protección de sus datos personales.
+            Cpap-Mexico (CPAP-MEXICO), con domicilio en la Ciudad de México, es el responsable del uso y protección de sus datos personales.
           </p>
         </section>
 
@@ -45,7 +45,7 @@ export default function PrivacyPage() {
             Usted tiene derecho a conocer qué datos personales tenemos de usted, para qué los utilizamos y las condiciones del uso que les damos (Acceso). Asimismo, es su derecho solicitar la corrección de su información personal (Rectificación); que la eliminemos de nuestros registros (Cancelación); así como oponerse al uso de sus datos para fines específicos (Oposición).
           </p>
           <p className="text-on-surface-variant font-body leading-relaxed">
-            Para ejercer cualquiera de los derechos ARCO, usted deberá enviar una solicitud por escrito al correo electrónico: <a href="mailto:hola@cpap-mexico.com" className="text-primary font-bold hover:underline">hola@cpap-mexico.com</a>
+            Para ejercer cualquiera de los derechos ARCO, usted deberá enviar una solicitud por escrito al correo electrónico: <a href="mailto:contacto@cpap-mexico.com" className="text-primary font-bold hover:underline">contacto@cpap-mexico.com</a>
           </p>
         </section>
       </div>

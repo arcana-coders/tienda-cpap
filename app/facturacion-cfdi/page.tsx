@@ -1,8 +1,8 @@
 import React from 'react'
 
 export const metadata = {
-  title: 'Facturación CFDI | The Respiratory Atelier',
-  description: 'Solicita tu factura CFDI de manera sencilla para tus compras de equipos CPAP.',
+  title: 'Facturación CFDI | Cpap-Mexico',
+  description: 'Solicita tu factura CFDI para tus compras de equipos CPAP.',
 }
 
 export default function FacturacionPage() {
@@ -13,7 +13,7 @@ export default function FacturacionPage() {
       <div className="bg-surface-container-lowest p-8 md:p-12 rounded-3xl border border-outline-variant/10 shadow-sm space-y-10">
         <div className="space-y-4">
           <p className="text-xl text-on-surface font-headline font-medium">
-            ¡Gracias por tu compra! En The Respiratory Atelier facilitamos tu proceso de facturación.
+            ¡Gracias por tu compra! En Cpap-Mexico facilitamos tu proceso de facturación.
           </p>
           <p className="text-on-surface-variant font-body leading-relaxed">
             Para que podamos emitir su factura CFDI (Versión 4.0), requerimos que nos proporcione sus datos fiscales completos y vigentes.
@@ -44,8 +44,8 @@ export default function FacturacionPage() {
               Envíe su información o su <strong>Constancia de Situación Fiscal</strong> actualizada al correo:
             </p>
             <div className="bg-surface-container-highest p-4 rounded-xl text-center">
-              <a href="mailto:hola@cpap-mexico.com" className="text-primary font-bold text-lg hover:underline decoration-2">
-                hola@cpap-mexico.com
+              <a href="mailto:contacto@cpap-mexico.com" className="text-primary font-bold text-lg hover:underline decoration-2">
+                contacto@cpap-mexico.com
               </a>
             </div>
             <p className="text-[10px] text-on-surface-variant/60 font-body italic">

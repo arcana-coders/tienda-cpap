@@ -8,6 +8,8 @@ import ProductCard from '@/components/catalog/ProductCard'
 import HeroSection from '@/components/home/HeroSection'
 import TrustBar from '@/components/home/TrustBar'
 import OfertasDelDia from '@/components/home/OfertasDelDia'
+import EducationSection from '@/components/home/EducationSection'
+import TestimonialsSection from '@/components/home/TestimonialsSection'
 
 async function getDestacados() {
   try {
@@ -98,7 +100,10 @@ export default async function HomePage() {
       {/* 2. Trust bar */}
       <TrustBar />
 
-      {/* 3. Ofertas del día — layout editorial */}
+      {/* 3. Sección educativa — apnea del sueño */}
+      <EducationSection />
+
+      {/* 4. Ofertas del día — layout editorial */}
       {ofertasProductos.length > 0 && (
         <OfertasDelDia productos={ofertasProductos} />
       )}
@@ -178,7 +183,10 @@ export default async function HomePage() {
         </section>
       ) : null}
 
-      {/* 6. Banner Editorial — Diferencial CPAP */}
+      {/* 6. Testimonios — personas reales */}
+      <TestimonialsSection />
+
+      {/* 7. Banner Editorial — Diferencial CPAP */}
       <section className="max-w-7xl mx-auto px-4 md:px-8 py-20 scroll-mt-20">
         <div className="bg-primary rounded-[2rem] overflow-hidden shadow-2xl shadow-primary/20">
           <div className="grid grid-cols-1 lg:grid-cols-2">
