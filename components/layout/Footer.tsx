@@ -77,6 +77,7 @@ export default function Footer() {
         <div className="col-span-1">
           <h4 className="font-headline font-semibold text-on-surface mb-4">Soporte</h4>
           <ul className="space-y-3">
+            <li><Link href="/nosotros" className="text-on-surface-variant hover:text-primary transition-all opacity-90 hover:opacity-100">Quiénes somos</Link></li>
             <li><Link href="/guia-apnea-sueno" className="text-on-surface-variant hover:text-primary transition-all opacity-90 hover:opacity-100">Guía: Apnea del Sueño</Link></li>
             <li><Link href="/blog" className="text-on-surface-variant hover:text-primary transition-all opacity-90 hover:opacity-100">Blog educativo</Link></li>
             <li><Link href="/envios" className="text-on-surface-variant hover:text-primary transition-all opacity-90 hover:opacity-100">Envíos y Logística</Link></li>
