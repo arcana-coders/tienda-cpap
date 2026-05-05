@@ -6,6 +6,7 @@ import { eq, and, ne } from 'drizzle-orm'
 import { notFound } from 'next/navigation'
 import ProductImages from '@/components/product/ProductImages'
 import ProductInfo from '@/components/product/ProductInfo'
+import ProductAccordion from '@/components/product/ProductAccordion'
 import ProductCard from '@/components/catalog/ProductCard'
 import Link from 'next/link'
 import { cleanText } from '@/lib/strings'
@@ -159,20 +160,14 @@ export default async function ProductoPage({ params }: Props) {
       {/* Producto principal */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
         <ProductImages imagenes={(producto.imagenes as string[]) ?? []} titulo={producto.titulo} />
-        <ProductInfo producto={producto as any} />
-      </div>
-
-      {/* Descripción Expandida*/}
-      {cleanDescription(producto.descripcion) && (
-        <div className="mt-20 border-t border-outline-variant/20 pt-16">
-          <h2 className="text-3xl font-extrabold text-on-surface font-headline mb-8 border-l-4 border-primary pl-4">Acerca de este equipo</h2>
-          <div className="bg-surface-container-lowest p-8 md:p-12 rounded-3xl border border-outline-variant/10 shadow-sm max-w-4xl">
-            <p className="text-base md:text-lg text-on-surface-variant font-body leading-relaxed whitespace-pre-line tracking-wide">
-                {cleanText(cleanDescription(producto.descripcion))}
-            </p>
-          </div>
+        <div className="flex flex-col">
+          <ProductInfo producto={producto as any} />
+          <ProductAccordion
+            descripcion={cleanDescription(producto.descripcion)}
+            bullets={producto.bullets as string[] | null}
+          />
         </div>
-      )}
+      </div>
 
       {/* Reviews */}
       {Array.isArray(producto.reviews) && (producto.reviews as any[]).length > 0 && (
