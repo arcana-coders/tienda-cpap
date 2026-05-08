@@ -138,7 +138,7 @@ export default async function ProductoPage({ params }: Props) {
   }
 
   return (
-    <main className="max-w-7xl mx-auto px-4 md:px-8 pt-[110px] lg:pt-[155px] pb-8 md:pb-12">
+    <main className="max-w-7xl mx-auto px-4 md:px-8 pt-6 lg:pt-10 pb-8 md:pb-12">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
 
@@ -175,7 +175,7 @@ export default async function ProductoPage({ params }: Props) {
           <h2 className="text-3xl font-extrabold text-on-surface font-headline mb-8 border-l-4 border-primary pl-4">Reseñas</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {(producto.reviews as { autor: string; titulo: string; texto: string; fecha: string }[]).slice(0,6).map((r, i) => (
-              <div key={i} className="bg-surface-container-low rounded-2xl p-6 border border-outline-variant/10 flex flex-col h-full hover:shadow-lg transition-shadow">
+              <div key={i} className="bg-surface-container-low rounded-2xl p-6 border border-outline-variant/10 flex flex-col h-full hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
                 {/* Estrellas */}
                 <div className="flex items-center gap-1 mb-4">
                   {[1,2,3,4,5].map(s => (

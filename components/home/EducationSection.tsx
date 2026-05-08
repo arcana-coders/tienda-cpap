@@ -2,7 +2,11 @@ import Link from 'next/link'
 
 const BLOQUES = [
   {
-    icon: 'bedtime',
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+      </svg>
+    ),
     titulo: '¿Qué es la apnea del sueño?',
     descripcion:
       'Es cuando tu respiración se detiene repetidamente mientras duermes — a veces cientos de veces por noche. Tu cuerpo se despierta brevemente cada vez para volver a respirar, aunque tú no lo recuerdes.',
@@ -10,7 +14,11 @@ const BLOQUES = [
     iconColor: 'text-primary',
   },
   {
-    icon: 'warning',
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2" />
+      </svg>
+    ),
     titulo: 'Señales de alerta',
     descripcion:
       'Ronquidos fuertes, cansancio aunque hayas dormido 8 horas, dolores de cabeza al despertar, dificultad para concentrarte, irritabilidad sin razón aparente. ¿Te suena familiar?',
@@ -18,7 +26,12 @@ const BLOQUES = [
     iconColor: 'text-amber-600',
   },
   {
-    icon: 'favorite',
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+        <path d="M12 7v5l3 3" />
+      </svg>
+    ),
     titulo: 'Por qué tratarla importa',
     descripcion:
       'La apnea no tratada aumenta el riesgo de hipertensión, enfermedades cardíacas, diabetes tipo 2 y accidentes de tráfico por somnolencia. El tratamiento cambia vidas — y lo hemos visto.',
@@ -26,7 +39,13 @@ const BLOQUES = [
     iconColor: 'text-red-500',
   },
   {
-    icon: 'air',
+    icon: (
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2" />
+        <path d="M9.6 4.6A2 2 0 1 1 11 8H2" />
+        <path d="M12.6 19.4A2 2 0 1 0 14 16H2" />
+      </svg>
+    ),
     titulo: 'Cómo ayuda el CPAP',
     descripcion:
       'El CPAP envía una corriente suave y constante de aire que mantiene tus vías respiratorias abiertas mientras duermes. Sin cirugías, sin medicamentos. Primera noche con él y muchos pacientes ya notan la diferencia.',
@@ -64,10 +83,10 @@ export default function EducationSection() {
             key={i}
             className="flex flex-col gap-4 p-6 rounded-2xl border border-outline-variant/15 bg-surface-container-lowest hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
           >
-            <div className={`w-12 h-12 rounded-xl ${bloque.color} flex items-center justify-center flex-shrink-0`}>
-              <span className={`material-symbols-outlined text-[28px] ${bloque.iconColor}`}>
+            <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center flex-shrink-0 shadow-sm shadow-primary/20">
+              <div className="text-white drop-shadow-sm">
                 {bloque.icon}
-              </span>
+              </div>
             </div>
             <h3 className="font-headline font-bold text-on-surface text-base leading-snug">
               {bloque.titulo}

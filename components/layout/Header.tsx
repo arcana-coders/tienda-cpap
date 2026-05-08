@@ -102,7 +102,7 @@ export default function Header({ initialCategories = [] }: { initialCategories?:
   return (
     <>
       <CartDrawer />
-      <header className="fixed top-0 w-full z-40 bg-white/70 backdrop-blur-md shadow-sm shadow-primary/5">
+      <header className="sticky top-0 w-full z-40 bg-white/95 shadow-sm shadow-primary/5">
         <div className="max-w-7xl mx-auto px-4 md:px-8 py-3 flex items-center justify-between">
           
           <div className="flex items-center gap-4">
@@ -191,7 +191,7 @@ export default function Header({ initialCategories = [] }: { initialCategories?:
       {/* Mobile side menu */}
       {menuOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMenuOpen(false)} />
+          <div className="absolute inset-0 bg-black/60" onClick={() => setMenuOpen(false)} />
           <div className="absolute top-0 left-0 h-full w-[80%] max-w-sm bg-surface flex flex-col shadow-2xl">
             <div className="flex items-center justify-between px-6 py-5 border-b border-outline-variant/10 bg-white">
               <span className="font-headline font-bold text-on-surface text-lg">Menú</span>

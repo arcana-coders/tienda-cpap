@@ -107,12 +107,12 @@ export default function ProductInfo({ producto }: { producto: Producto }) {
           <div className="flex items-center bg-surface-container-low rounded-xl p-1 border border-outline-variant/20">
             <button
               onClick={() => setCantidad(c => Math.max(1, c - 1))}
-              className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-xl font-medium transition-all text-on-surface-variant"
+              className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-xl font-medium transition-all text-on-surface-variant active:scale-90"
             >−</button>
             <span className="w-12 text-center text-sm font-bold text-on-surface font-headline">{cantidad}</span>
             <button
               onClick={() => setCantidad(c => c + 1)}
-              className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-xl font-medium transition-all text-on-surface-variant"
+              className="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high text-xl font-medium transition-all text-on-surface-variant active:scale-90"
             >+</button>
           </div>
         </div>
@@ -123,7 +123,7 @@ export default function ProductInfo({ producto }: { producto: Producto }) {
             w-full py-4 rounded-xl font-bold font-body text-lg flex items-center justify-center gap-3 transition-all duration-300
             ${agregado 
               ? 'bg-secondary text-on-secondary shadow-md scale-[0.99] cursor-default'
-              : 'bg-primary text-on-primary hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5'
+              : 'bg-primary text-on-primary hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5 active:scale-95'
             }
           `}
         >
@@ -135,28 +135,34 @@ export default function ProductInfo({ producto }: { producto: Producto }) {
         </button>
 
         <div className="flex flex-col gap-3">
-          <div className="flex items-start gap-4 bg-surface-container-low p-4 rounded-xl">
-            <span className="material-symbols-outlined text-primary mt-0.5">local_shipping</span>
+          <div className="flex items-center gap-4 bg-surface-container-low p-4 rounded-2xl border border-outline-variant/5">
+            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0 shadow-sm">
+              <span className="material-symbols-outlined text-[20px]">local_shipping</span>
+            </div>
             <div>
               <p className="font-bold text-on-surface text-sm font-body">Importación y Envío Nacional Gratis</p>
-              <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">Directo a tu domicilio en 7-9 días hábiles.</p>
+              <p className="text-xs text-on-surface-variant mt-0.5 leading-relaxed">Directo a tu domicilio en 7-9 días hábiles.</p>
             </div>
           </div>
           
-          <div className="flex items-start gap-4 bg-surface-container-low p-4 rounded-xl">
-            <span className="material-symbols-outlined text-primary mt-0.5">receipt_long</span>
+          <div className="flex items-center gap-4 bg-surface-container-low p-4 rounded-2xl border border-outline-variant/5">
+            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0 shadow-sm">
+              <span className="material-symbols-outlined text-[20px]">receipt_long</span>
+            </div>
             <div>
               <p className="font-bold text-on-surface text-sm font-body">Facturación CFDI</p>
-              <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">Facturamos todos tus pedidos de forma electrónica según regulaciones del SAT.</p>
+              <p className="text-xs text-on-surface-variant mt-0.5 leading-relaxed">Facturamos todos tus pedidos de forma electrónica según regulaciones del SAT.</p>
             </div>
           </div>
 
-          <div className="bg-[#c1ebb5]/10 p-5 rounded-xl border border-[#c1ebb5]/20">
-            <div className="flex items-start gap-4 mb-4">
-              <span className="material-symbols-outlined text-[#43673c] mt-0.5">verified_user</span>
+          <div className="bg-[#c1ebb5]/10 p-6 rounded-[2rem] border border-[#c1ebb5]/20">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-10 h-10 rounded-full bg-[#43673c] flex items-center justify-center text-[#c1ebb5] shrink-0 shadow-sm">
+                <span className="material-symbols-outlined text-[20px] fill-current">verified_user</span>
+              </div>
               <div>
                 <p className="font-bold text-[#1b1c1c] text-sm font-body">Garantía de Satisfacción</p>
-                <p className="text-xs text-[#44494e] mt-1 leading-relaxed text-balance">Si no estás satisfecho con tu compra, te devolvemos tu dinero.</p>
+                <p className="text-[11px] text-[#44494e] mt-0.5 leading-relaxed text-balance">Si no estás satisfecho, te devolvemos tu dinero.</p>
               </div>
             </div>
             
@@ -201,10 +207,14 @@ export default function ProductInfo({ producto }: { producto: Producto }) {
               if(title.length > 50) title = title.substring(0, 50) + '...';
 
               return (
-                <div key={i} className={`bg-surface-container-low p-5 md:p-6 rounded-2xl flex flex-col gap-2 border border-outline-variant/5 ${i === 2 && bullets.length === 3 ? 'md:col-span-2' : ''} ${i === 3 ? 'md:col-span-2' : ''}`}>
-                  <span className="material-symbols-outlined text-primary mb-1 text-[28px] opacity-80">{getIconForBullet(title)}</span>
-                  <p className="text-sm font-bold text-on-surface font-body">{title}</p>
-                  <p className="text-sm text-on-surface-variant leading-relaxed line-clamp-4">{desc}</p>
+                <div key={i} className={`bg-surface-container-low p-5 md:p-6 rounded-[2rem] flex flex-col gap-3 border border-outline-variant/5 shadow-sm hover:shadow-md transition-all duration-300 ${i === 2 && bullets.length === 3 ? 'md:col-span-2' : ''} ${i === 3 ? 'md:col-span-2' : ''}`}>
+                  <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white shrink-0 shadow-sm mb-1">
+                    <span className="material-symbols-outlined text-[24px]">{getIconForBullet(title)}</span>
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-on-surface font-body mb-1">{title}</p>
+                    <p className="text-xs text-on-surface-variant leading-relaxed line-clamp-4">{desc}</p>
+                  </div>
                 </div>
               )
             })}

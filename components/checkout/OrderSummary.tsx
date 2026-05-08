@@ -60,7 +60,7 @@ function CardSubmitButton({ label, isProcessing }: { label: string; isProcessing
 }
 
 export default function OrderSummary({ paymentMethod, setPaymentMethod, clienteData }: any) {
-  const { items, clearCart } = useCartStore() as any
+  const { items, clearCart, removeItem, updateQuantity } = useCartStore() as any
   const router = useRouter()
   const [isProcessing, setIsProcessing] = useState(false)
   const [showCardForm, setShowCardForm] = useState(false)
@@ -128,15 +128,45 @@ export default function OrderSummary({ paymentMethod, setPaymentMethod, clienteD
                   alt={item.titulo}
                   className="w-full h-full object-contain p-2"
                 />
-                <span className="absolute -top-1 -right-1 bg-[#00386c] text-white text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-white">
-                  {item.cantidad}
-                </span>
               </div>
-              <div className="flex-1 min-w-0">
-                <h4 className="text-xs font-bold text-[#1b1c1c] line-clamp-2 leading-relaxed mb-1 capitalize">
+              <div className="flex-1 min-w-0 flex flex-col justify-between">
+                <h4 className="text-xs font-bold text-[#1b1c1c] line-clamp-2 leading-relaxed mb-2 capitalize">
                   {item.titulo.toLowerCase()}
                 </h4>
-                <span className="text-sm font-black text-[#00386c]">{formatPrice(Number(item.precio))}</span>
+                <div className="flex items-center justify-between mt-auto">
+                  <span className="text-sm font-black text-[#00386c]">{formatPrice(Number(item.precio))}</span>
+                  
+                  {/* Controles de cantidad y eliminar */}
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <button 
+                      type="button"
+                      onClick={() => removeItem(item.id)}
+                      className="text-[#74787e] hover:text-[#dc2626] text-[10px] font-bold uppercase tracking-wider flex items-center gap-1 transition-colors"
+                      title="Eliminar producto"
+                    >
+                      <span className="material-symbols-outlined text-[14px]">delete</span>
+                      <span>Eliminar</span>
+                    </button>
+                    
+                    <div className="flex items-center gap-1.5 bg-[#f5f3f3] rounded-full px-1.5 py-1">
+                      <button 
+                        type="button"
+                        onClick={() => updateQuantity(item.id, item.cantidad - 1)}
+                        className="w-6 h-6 flex items-center justify-center bg-white rounded-full text-[#74787e] hover:text-[#1b1c1c] hover:shadow-sm transition-all shadow-sm active:scale-95"
+                      >
+                        <span className="material-symbols-outlined text-[14px] font-bold">remove</span>
+                      </button>
+                      <span className="text-xs font-bold text-[#1b1c1c] min-w-[1.25rem] text-center">{item.cantidad}</span>
+                      <button 
+                        type="button"
+                        onClick={() => updateQuantity(item.id, item.cantidad + 1)}
+                        className="w-6 h-6 flex items-center justify-center bg-white rounded-full text-[#74787e] hover:text-[#1b1c1c] hover:shadow-sm transition-all shadow-sm active:scale-95"
+                      >
+                        <span className="material-symbols-outlined text-[14px] font-bold">add</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           ))}

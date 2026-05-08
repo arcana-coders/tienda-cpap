@@ -167,8 +167,7 @@ export default function ContactoPage() {
             >
               {/* Specialized Icon Holder */}
               <div 
-                className="flex-shrink-0 w-16 h-16 rounded-3xl flex items-center justify-center transition-all duration-500"
-                style={{ backgroundColor: `${c.color}10`, color: c.color }}
+                className="flex-shrink-0 w-14 h-14 rounded-full bg-[#00386c] flex items-center justify-center text-white shadow-md transition-all duration-500 group-hover:scale-110"
               >
                 {c.icon}
               </div>
@@ -210,8 +209,8 @@ export default function ContactoPage() {
             className="bg-[#f5f3f3] rounded-[3rem] p-10 md:p-14 border border-[#c4c8ce]/20 flex flex-col gap-8 h-full"
             style={{ opacity: 0 }}
           >
-            <div className="flex-shrink-0 w-16 h-16 rounded-full bg-white flex items-center justify-center text-[#582d00] shadow-sm">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <div className="flex-shrink-0 w-16 h-16 rounded-full bg-[#00386c] flex items-center justify-center text-white shadow-lg">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             </div>
             
             <div className="flex-1">
@@ -343,7 +342,7 @@ export default function ContactoPage() {
 
               <button 
                 type="submit"
-                className="w-full bg-[#00386c] text-white font-black py-5 rounded-2xl shadow-lg shadow-[#00386c]/20 hover:bg-[#1a4f8b] hover:-translate-y-1 disabled:opacity-50 disabled:translate-y-0 transition-all duration-300 flex items-center justify-center gap-3 group"
+                className="w-full bg-[#00386c] text-white font-black py-5 rounded-2xl shadow-lg shadow-[#00386c]/20 hover:bg-[#1a4f8b] hover:-translate-y-1 active:scale-95 disabled:opacity-50 disabled:translate-y-0 transition-all duration-300 flex items-center justify-center gap-3 group"
               >
                 ENVIAR MENSAJE
                 <span className="group-hover:translate-x-2 transition-transform duration-300">

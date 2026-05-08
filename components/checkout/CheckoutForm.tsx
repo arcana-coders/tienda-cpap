@@ -51,7 +51,7 @@ export default function CheckoutForm({ formData, setFormData }: any) {
           <Input 
             label="Nombre Completo" 
             name="nombre" 
-            placeholder="Como aparece en INE"
+            placeholder="Ej: Juan Pérez"
             divClass="md:col-span-2"
             value={formData.nombre}
             onChange={handleChange}
@@ -94,7 +94,7 @@ export default function CheckoutForm({ formData, setFormData }: any) {
           <Input 
             label="Calle" 
             name="calle" 
-            placeholder="Nombre de la vialidad"
+            placeholder="Ej: Av. Reforma"
             divClass="md:col-span-6"
             value={formData.calle}
             onChange={handleChange}
@@ -120,7 +120,7 @@ export default function CheckoutForm({ formData, setFormData }: any) {
           <Input 
             label="Colonia" 
             name="colonia" 
-            placeholder="Nombre del fraccionamiento"
+            placeholder="Ej: Centro Histórico"
             divClass="md:col-span-2"
             value={formData.colonia}
             onChange={handleChange}
@@ -148,7 +148,7 @@ export default function CheckoutForm({ formData, setFormData }: any) {
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
         </div>
         <p className="text-xs text-[#44494e] leading-relaxed">
-          Tus datos personales están seguros. Utilizamos encriptación de grado bancario para proteger tu información durante todo el proceso de compra.
+          Tus datos están protegidos con encriptación de grado bancario.
         </p>
       </div>
     </div>

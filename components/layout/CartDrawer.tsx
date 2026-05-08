@@ -16,14 +16,14 @@ export default function CartDrawer() {
       {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-[#001c36]/40 backdrop-blur-sm z-40 transition-opacity"
+          className="fixed inset-0 bg-[#001c36]/60 z-[60] transition-opacity"
           onClick={closeCart}
         />
       )}
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 h-full w-full max-w-sm bg-white z-50 shadow-[0_0_50px_rgba(0,0,0,0.1)] flex flex-col transition-transform duration-500 ease-out ${
+        className={`fixed top-0 right-0 h-full w-full max-w-sm bg-white z-[70] shadow-[0_0_50px_rgba(0,0,0,0.1)] flex flex-col transition-transform duration-500 ease-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -124,7 +124,7 @@ export default function CartDrawer() {
             <Link
               href="/checkout"
               onClick={closeCart}
-              className="group relative block w-full py-6 bg-[#00386c] hover:bg-[#1a4f8b] text-white font-black rounded-2xl text-center text-base transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5 overflow-hidden border-2 border-white/10"
+              className="group relative block w-full py-6 bg-[#00386c] hover:bg-[#1a4f8b] text-white font-black rounded-2xl text-center text-base transition-all shadow-lg hover:shadow-xl active:scale-95 hover:-translate-y-0.5 overflow-hidden border-2 border-white/10"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
               <span className="relative z-10 flex items-center justify-center gap-3 tracking-tight">
