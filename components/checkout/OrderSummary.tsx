@@ -11,7 +11,7 @@ import {
   usePayPalCardFields,
 } from "@paypal/react-paypal-js"
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 const IconPayPal = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -63,6 +63,7 @@ export default function OrderSummary({ paymentMethod, setPaymentMethod, clienteD
   const { items, clearCart, removeItem, updateQuantity } = useCartStore() as any
   const router = useRouter()
   const [isProcessing, setIsProcessing] = useState(false)
+  const paymentInFlightRef = useRef(false)
   const [showCardForm, setShowCardForm] = useState(false)
 
   const subtotal = items.reduce((sum: number, i: any) => sum + (Number(i.precio) * i.cantidad), 0)
@@ -79,13 +80,26 @@ export default function OrderSummary({ paymentMethod, setPaymentMethod, clienteD
   }
 
   const handleCreateOrder = async () => {
-    const res = await fetch("/api/checkout/paypal/create-order", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items, clienteData }),
-    })
-    const order = await res.json()
-    return order.id
+    if (paymentInFlightRef.current) {
+      throw new Error('Ya estamos procesando tu pago.')
+    }
+
+    paymentInFlightRef.current = true
+    setIsProcessing(true)
+    try {
+      const res = await fetch("/api/checkout/paypal/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ items, clienteData }),
+      })
+      const order = await res.json()
+      if (!order.id) throw new Error(order.error || 'No se pudo crear la orden en PayPal.')
+      return order.id
+    } catch (error) {
+      paymentInFlightRef.current = false
+      setIsProcessing(false)
+      throw error
+    }
   }
 
   const handleCapture = async (orderID: string) => {
@@ -106,12 +120,14 @@ export default function OrderSummary({ paymentMethod, setPaymentMethod, clienteD
         clearCart()
         router.push(`/checkout/exitoso?order=${result.numeroOrden}`)
       } else {
+        paymentInFlightRef.current = false
+        setIsProcessing(false)
         alert('El pago no pudo ser completado. Por favor intenta de nuevo.')
       }
     } catch (err) {
       console.error(err)
       alert('Hubo un error procesando tu pago.')
-    } finally {
+      paymentInFlightRef.current = false
       setIsProcessing(false)
     }
   }
@@ -208,6 +224,12 @@ export default function OrderSummary({ paymentMethod, setPaymentMethod, clienteD
               disabled={isProcessing}
               createOrder={handleCreateOrder}
               onApprove={async (data) => handleCapture(data.orderID)}
+              onError={(err) => {
+                console.error('PayPal Buttons error:', err)
+                paymentInFlightRef.current = false
+                setIsProcessing(false)
+                alert('Error al procesar el pago con PayPal. Intenta de nuevo.')
+              }}
             />
 
             {/* Divider */}
@@ -240,6 +262,7 @@ export default function OrderSummary({ paymentMethod, setPaymentMethod, clienteD
                 onApprove={async ({ orderID }) => handleCapture(orderID)}
                 onError={(err) => {
                   console.error('PayPal CardFields error:', err)
+                  paymentInFlightRef.current = false
                   setIsProcessing(false)
                   alert('Error al procesar la tarjeta. Verifica los datos e intenta de nuevo.')
                 }}

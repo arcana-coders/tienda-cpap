@@ -94,7 +94,7 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Pago no completado', detail: captureData }, { status: 400 });
     }
 
-    const numeroOrden = `CPAP-${nanoid(8).toUpperCase()}`;
+    const numeroOrden = captureData.purchase_units?.[0]?.invoice_id ?? `CPAP-${nanoid(8).toUpperCase()}`;
     const captureId = captureData.purchase_units?.[0]?.payments?.captures?.[0]?.id ?? orderID;
     const capturedAmount = getCapturedAmount(captureData);
 
