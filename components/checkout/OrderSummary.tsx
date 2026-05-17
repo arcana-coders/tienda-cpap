@@ -95,7 +95,12 @@ export default function OrderSummary({ paymentMethod, setPaymentMethod, clienteD
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ orderID, clienteData, items, total: grandTotal }),
-      })
+      });
+
+      if (!res.ok) {
+        throw new Error('Error en la respuesta del servidor');
+      }
+
       const result = await res.json()
       if (result.status === 'COMPLETED') {
         clearCart()
